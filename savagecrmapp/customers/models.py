@@ -16,5 +16,3 @@ class Service(models.Model):
     product_bought= models.CharField(max_length=100)
     product_used= models.CharField(max_length=100)
     payment_way=models.CharField(max_length=100)
-
-
