@@ -6,5 +6,9 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.index, name="index")
+    #ex: /customers/
+    path("", views.index, name="index"),
+    #ex: /customers/5/detail/
+    path("<int:customer_id>/detail/", views.detail, name="index"),
+    path("<int:service_id>/service/", views.services, name="index" )
 ]   
