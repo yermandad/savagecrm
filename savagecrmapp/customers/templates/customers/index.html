@@ -1,0 +1,10 @@
+{% if  latest_customer_list %}
+    <ul>
+        {% for  customer in latest_customer_list %}
+            <li><a href="/customers/{{customer.id}}">{{customer.c_name}} {{customer.c_lastname}}</a></li>
+        {% endfor %}
+
+    </ul>
+{% else %}
+    <p>No hay clientes registrados todavia</p>
+{% endif %}
