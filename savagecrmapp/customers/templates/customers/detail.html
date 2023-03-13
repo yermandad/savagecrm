@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>{{customer.c_name}} {{customer.c_lastname}}:</h1>
+    <ul>
+        {% for service in customer.service_set.all %}
+        <h2>{{service.service}}: {{service.bougth_date}}</h2>
+        <li>{{service.drink}}</li>
+        <li>{{service.payment_way}}</li>
+        <li>{{service.product_used}}</li>
+        
+        {% endfor %}
+    </ul>
+
+    <form action="{% url 'customers:schedule' customer.id %}" method="post">
+        {% csrf_token %}
+        <label for="" value="Agendar"></label>
+        <input type="text">
+        <input type="submit">
+    </form>
+</body>
+</html>

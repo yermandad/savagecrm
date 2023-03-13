@@ -1,10 +1,33 @@
-{% if  latest_customer_list %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">-->
+    <link rel="stylesheet" type="text/css" href="C:\Users\Usuario\Documents\Develop Projects\Savage\savagecrmapp\styles\style.css">
+    <title>Savage CRM</title>
+</head>
+<body>
+    <header>
+        <ul>
+            <h3>Clientes</h3>
+            <h3>Barberos</h3>
+            <h3>Administrativo</h3>
+        </ul>
+    </header>
+    <h1>Bienbenido al sistema de gestion de Savage Barberia</h1>
+    {% if  latest_customer_list %}
     <ul>
         {% for  customer in latest_customer_list %}
-            <li><a href="/customers/{{customer.id}}">{{customer.c_name}} {{customer.c_lastname}}</a></li>
+            <li><a href="{% url 'customers:detail' customer.id%}">{{customer.c_name}} {{customer.c_lastname}}</a></li>
         {% endfor %}
 
     </ul>
-{% else %}
+    {% else %}
     <p>No hay clientes registrados todavia</p>
-{% endif %}
+    {% endif %}
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>-->
+</body>
+</html>

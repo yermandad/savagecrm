@@ -13,7 +13,7 @@ class   Customer(models.Model):
     reg_date = models.DateTimeField("Date Registered")
     
     def __str__ (self):
-        return self.c_name
+        return self.c_name+' '+self.c_lastname
 
     def reg_recently(self):
         return self.reg_date >= timezone.now()- datetime.timedelta(months=1)
@@ -26,9 +26,10 @@ class Service(models.Model):
     product_used= models.CharField(max_length=100)
     payment_way=models.CharField(max_length=100)
     bougth_date= models.DateTimeField("Bougth Date")
+    times= models.IntegerField(default=0)
     
     def __str__ (self):
-        return self.customer
+        return self.service
 
     def buy_recently(self):
         return self.reg_date >= timezone.now()- datetime.timedelta(months=1)
