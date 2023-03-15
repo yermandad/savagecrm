@@ -1,0 +1,53 @@
+nav {
+    background-color: grey;
+    text-decoration: none;
+    color: #fff;
+    /* padding: 5px; */
+}
+
+li.menu{
+    list-style: none;
+    text-align: center;
+    display: inline-block;
+}
+
+ul {
+    text-align: left;
+    list-style: none;
+    line-height: 30px;
+}
+
+a{
+    text-decoration: none;
+    
+}
+a.menu{
+    color: #fff;
+    width: 200px;
+    color: f#fff;
+    display: block;
+}
+
+a.menu:hover{
+    background-color: bisque;
+    display: block;
+}
+
+a.cliente{
+    text-decoration: none;
+    width: 100px;
+}
+
+a.cliente:visited{
+    text-decoration: none;
+    color: #000;
+}
+
+body {
+    background-color: lightblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1{
+    align-content: center;
+}

@@ -7,9 +7,9 @@ from . import views
 app_name = "customers"
 urlpatterns = [
     #ex: /customers/
-    path("", views.index, name="index"),
+    path("", views.IndexView.as_view(), name="index"),
     #ex: /customers/5/detail/
-    path("<int:customer_id>/detail/", views.detail, name="detail"),
-    path("<int:service_id>/service/", views.services, name="service" ),
+    path("<int:pk>/detail/", views.DetailView.as_view(), name="detail"),
+    path("<int:pk>/service/", views.ServiceView.as_view(), name="service" ),
     path("<int:barber_id>/schedule/", views.schedule, name="schedule")
 ]

@@ -5,22 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">-->
-    <link rel="stylesheet" type="text/css" href="C:\Users\Usuario\Documents\Develop Projects\Savage\savagecrmapp\styles\style.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'customers/style.css'%}">
     <title>Savage CRM</title>
 </head>
 <body>
-    <header>
-        <ul>
-            <h3>Clientes</h3>
-            <h3>Barberos</h3>
-            <h3>Administrativo</h3>
+    <nav>
+        <ul >
+            <li class="menu"><a href="#" class="menu"> Clientes</a></li>
+            <li class="menu"><a href="#" class="menu">Barberos</a></li>
+            <li class="menu"><a href="#" class="menu">Administrativo</a></li>
         </ul>
-    </header>
+    </nav>
     <h1>Bienbenido al sistema de gestion de Savage Barberia</h1>
+
+    <p>Ingresa el numero de telefono del cliente que deseas consultar.</p>
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="" value="Agendar">Ingresa el nombre o telefono del cliente que deseas consultar</label><br>
+        <input type="text">
+        <input type="submit" value="Buscar">
+    </form>
+
     {% if  latest_customer_list %}
+    <div>
+        <form> 
+            <table width=auto border="1">
+                <thead>
+                    <td><b>Nombre</b></td>
+                    <td><b>Apellido</b></td>
+                    <td><b>Telefono</b></td>
+                    <td><b>Acción</b></td>
+                </thead>
     <ul>
         {% for  customer in latest_customer_list %}
-            <li><a href="{% url 'customers:detail' customer.id%}">{{customer.c_name}} {{customer.c_lastname}}</a></li>
+        <tr>
+            <td>{{customer.c_name}}</td>
+            <td>{{customer.c_lastname}}</td>
+            <td>{{customer.c_phone}}</td>
+            <td><b><a class="cliente" href="{% url 'customers:detail' customer.id%}">Revisar</a>|<a href="{% url 'customers:schedule' customer.id%}">Agendar</a></b></td>
+        </tr>
+           
         {% endfor %}
 
     </ul>
