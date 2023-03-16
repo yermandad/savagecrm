@@ -46,11 +46,12 @@ def schedule(request, barber_id):
 
 
 def get_costumer(request):
-    cliente=list(Customer.objects.values())
-    
-    if(len(cliente)>0):
-        data={'cliente':cliente}
-    else:
-        data={'message':'Not Found'}
+    if request.method =='POST':
+        search =request.POST.get('search')
+        cliente=list(Customer.objects.values().filter(c_name__contains=search))
+        if(len(cliente)>0):
+            data={'cliente':cliente}
+        else:
+            data={'message':'Not Found'}
         
-    return JsonResponse(data)
+        return JsonResponse(data)

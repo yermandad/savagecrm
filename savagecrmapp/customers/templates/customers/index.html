@@ -74,19 +74,6 @@
                         <tbody id="tCustomer">
                         
                         </tbody>
-                       {% comment %}  {% for  customer in latest_customer_list %}
-                        <tr>
-                            <td>{{customer.c_name}}</td>
-                            <td>{{customer.c_lastname}}</td>
-                            <td>{{customer.c_phone}}</td>
-                            <td>Revisar|Agendar</td>
-                            <td><b><a class="cliente" href="{% url 'customers:detail' customer.id%}">Revisar</a>|<a href="{% url 'customers:schedule' customer.id%}">Agendar</a></b></td>
-                        </tr> {% endcomment %}
-
-                        {% comment %} {% endfor %}
-                        {% else %} {% endcomment %}
-                        {% comment %} <p>No hay clientes registrados todavia</p>
-                        {% endif %} {% endcomment %}
                     </table>
                 </form>
             </div>
