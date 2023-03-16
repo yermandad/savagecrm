@@ -1,59 +1,103 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">-->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'customers/style.css'%}">
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'customers/bootstrap.min.css'%}">
     <title>Savage CRM</title>
 </head>
 <body>
-    <nav>
-        <ul >
-            <li class="menu"><a href="#" class="menu"> Clientes</a></li>
-            <li class="menu"><a href="#" class="menu">Barberos</a></li>
-            <li class="menu"><a href="#" class="menu">Administrativo</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">Savage CRM</a>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a href="#" class="nav-link active"> Clientes</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">Barberos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">Administrativo</a></li>
+            </ul>
+        </div>
     </nav>
-    <h1>Bienbenido al sistema de gestion de Savage Barberia</h1>
+<main>
+    
+    <div class="container p-4">
+        <div class="row">
+            <!--Seccion de Registro de Clientes-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="" action="#" method="post" id="register-data ">
+                            <legend>Ingresa los datos del cliente que deseas registrar.</legend>
+                            <br>
+                            <div class="form-group">
+                                {% csrf_token %}
+                                
+                                <input class="form-control" type="text" placeholder="Nombre"><br>
+                                <input class="form-control" type="text" placeholder="Apellido"><br>
+                                <input class="form-control" type="tel" Placeholder="Telefono"><br>
+                               
+                            </div>
+                            <input class="btn btn-block btn-primary text-center" type="submit" value="Registrar">
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <!--Seccion de consulta de clientes-->
+            <div class="col-md-7">
+                <form class="form-inline my-2 my-lg-0" action="" method="post" id="form-request">
+                    {% csrf_token %}
+                    <legend>Ingresa el nombre o telefono del cliente que deseas consultar</legend>
+                    <br>
+                    <div class="form-group d-flex">
+                        <input class="form-control me-sm-2" type="search"  placeholder="Buscar Cliente" id="search">
+                        <input class="btn btn-success my-2 my-sm-0" type="submit" value="Buscar" id="btnCustomer">
+                    </div>
+                </form>
+                <br>
+                {% comment %} {% if  latest_customer_list %} {% endcomment %}
+            
+                <form> 
+                    <table class="table table-hover table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <td><b>Nombre</b></td>
+                                <td><b>Apellido</b></td>
+                                <td><b>Telefono</b></td>
+                                <td><b>Acción</b></td>
+                            </tr>
+                            
+                        </thead>
+                        <tbody id="tCustomer">
+                        
+                        </tbody>
+                       {% comment %}  {% for  customer in latest_customer_list %}
+                        <tr>
+                            <td>{{customer.c_name}}</td>
+                            <td>{{customer.c_lastname}}</td>
+                            <td>{{customer.c_phone}}</td>
+                            <td>Revisar|Agendar</td>
+                            <td><b><a class="cliente" href="{% url 'customers:detail' customer.id%}">Revisar</a>|<a href="{% url 'customers:schedule' customer.id%}">Agendar</a></b></td>
+                        </tr> {% endcomment %}
 
-    <p>Ingresa el numero de telefono del cliente que deseas consultar.</p>
-    <br>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="" value="Agendar">Ingresa el nombre o telefono del cliente que deseas consultar</label><br>
-        <input type="text">
-        <input type="submit" value="Buscar">
-    </form>
+                        {% comment %} {% endfor %}
+                        {% else %} {% endcomment %}
+                        {% comment %} <p>No hay clientes registrados todavia</p>
+                        {% endif %} {% endcomment %}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
 
-    {% if  latest_customer_list %}
-    <div>
-        <form> 
-            <table width=auto border="1">
-                <thead>
-                    <td><b>Nombre</b></td>
-                    <td><b>Apellido</b></td>
-                    <td><b>Telefono</b></td>
-                    <td><b>Acción</b></td>
-                </thead>
-    <ul>
-        {% for  customer in latest_customer_list %}
-        <tr>
-            <td>{{customer.c_name}}</td>
-            <td>{{customer.c_lastname}}</td>
-            <td>{{customer.c_phone}}</td>
-            <td><b><a class="cliente" href="{% url 'customers:detail' customer.id%}">Revisar</a>|<a href="{% url 'customers:schedule' customer.id%}">Agendar</a></b></td>
-        </tr>
-           
-        {% endfor %}
-
-    </ul>
-    {% else %}
-    <p>No hay clientes registrados todavia</p>
-    {% endif %}
-
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>-->
+</footer>
+<script></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="{% static 'customers/index.js' %}" type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 </body>
 </html>

@@ -13,6 +13,7 @@ li.menu{
 
 ul {
     text-align: left;
+    vertical-align: center;
     list-style: none;
     line-height: 30px;
 }
@@ -44,10 +45,50 @@ a.cliente:visited{
 }
 
 body {
-    background-color: lightblue;
+    background-color: #fff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 h1{
-    align-content: center;
+    text-align: center;
+}
+
+div.colum1 {
+    position:absolute;
+    padding: 10px;
+    width: 30%;
+    height: auto;
+    top:10px;
+    left:0px;
+    display: inline-block;
+    background-color: #f3adad;
+}
+
+div.colum2 {
+    position:absolute;
+    vertical-align: top;
+    padding: 10px;
+    /* text-align: justify; */
+    width: 60%;
+    height: auto;
+    top: 10px;
+    right: 100px;
+    float: right;
+    background-color:#b7def1;
+}
+#consultas {
+    position:absolute;
+    height: auto;
+    width: 100%;
+    margin: 20px;
+    display: inline;
+    
+}
+
+input.text {
+    margin-top: 5px;
+}
+
+input.buttom {
+    margin-top: 5px;
 }

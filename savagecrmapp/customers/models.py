@@ -19,7 +19,7 @@ class   Customer(models.Model):
         return self.reg_date >= timezone.now()- datetime.timedelta(months=1)
 
 class Service(models.Model):
-    customer= models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer= models.ForeignKey(Customer, null=False, blank=False ,on_delete=models.CASCADE)
     service= models.CharField(max_length=50)
     drink= models.CharField(max_length=50)
     product_bought= models.CharField(max_length=100)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Customer
 from django.views import generic
 
@@ -43,3 +43,14 @@ class ServiceView(generic.DetailView):
     
 def schedule(request, barber_id):
     return HttpResponse(f"Estas viendo el calendario del barbero no {barber_id}")
+
+
+def get_costumer(request):
+    cliente=list(Customer.objects.values())
+    
+    if(len(cliente)>0):
+        data={'cliente':cliente}
+    else:
+        data={'message':'Not Found'}
+        
+    return JsonResponse(data)
