@@ -12,5 +12,6 @@ urlpatterns = [
     path("<int:barber_id>/schedule/", views.schedule, name="schedule"),
     
     #link de consulta ajax
-    path("consulta/",views.get_costumer, name="consulta")
+    path("consulta/",views.get_costumer, name="consulta"),
+    path("register/",views.register_costumer, name="register")
 ]

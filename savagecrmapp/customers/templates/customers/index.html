@@ -29,18 +29,18 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form class="" action="#" method="post" id="register-data ">
+                        <form class="" action="" method="post" id="register-data ">
                             <legend>Ingresa los datos del cliente que deseas registrar.</legend>
                             <br>
                             <div class="form-group">
                                 {% csrf_token %}
                                 
-                                <input class="form-control" type="text" placeholder="Nombre"><br>
-                                <input class="form-control" type="text" placeholder="Apellido"><br>
-                                <input class="form-control" type="tel" Placeholder="Telefono"><br>
-                               
+                                <input class="form-control" type="text" placeholder="Nombre" id="c_name" required><br>
+                                <input class="form-control" type="text" placeholder="Apellido" id="c_lastname" required><br>
+                                <input class="form-control" type="tel" Placeholder="Telefono" id="c_phone" required><br>
+                                <h4 id='messageR'></h4>
                             </div>
-                            <input class="btn btn-block btn-primary text-center" type="submit" value="Registrar">
+                            <input class="btn btn-block btn-primary text-center" type="button" value="Registrar" id="btnResgister">
                         </form>
                         <br>
                     </div>
@@ -50,7 +50,7 @@
             <div class="col-md-7">
                 <form class="form-inline my-2 my-lg-0" action="" method="post" id="form-request">
                     {% csrf_token %}
-                    <legend>Ingresa el nombre o telefono del cliente que deseas consultar</legend>
+                    <legend>Ingresa el nombre del cliente que deseas consultar</legend>
                     <br>
                     <div class="form-group d-flex">
                         <input class="form-control me-sm-2" type="search"  placeholder="Buscar Cliente" id="search">

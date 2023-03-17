@@ -1,28 +1,65 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'customers/bootstrap.min.css'%}">
+    <title>Savage CRM</title>
 </head>
 <body>
-        <h1>{{customer.c_name}} {{customer.c_lastname}}:</h1>
-    <ul>
-        {% for service in customer.service_set.all %}
-        <h2>{{service.service}}: {{service.bougth_date}}</h2>
-        <li>{{service.drink}}</li>
-        <li>{{service.payment_way}}</li>
-        <li>{{service.product_used}}</li>
-        
-        {% endfor %}
-    </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">Savage CRM</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a href="#" class="nav-link active"> Clientes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Barberos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Administrativo</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <body>
+        <div class="container p-4">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <form  action="{% url 'customers:schedule' customer.id %}" method="post">
+                            {% csrf_token %}
+                            <table class="table table-hover table-bordered table-sm">
+                            <thead class="table-active">
+                                <tr class="table-secondary">
 
-    <form action="{% url 'customers:schedule' customer.id %}" method="post">
-        {% csrf_token %}
-        <label for="" value="Agendar"></label>
-        <input type="text">
-        <input type="submit">
-    </form>
+                                    <h1 style="text-align:center;">{{customer.c_name}} {{customer.c_lastname}}</h1>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for service in customer.service_set.all %}
+                                    <tr>
+                                        <td>{{service.service}}</td>
+                                        <td>{{service.bougth_date}}</td>
+                                        <td>{{service.drink}}</td>
+                                        <td>{{service.payment_way}}</td>
+                                        <td>{{service.product_used}}</td>
+                                    </tr>
+                                    {% endfor %}
+                            </tbody>
+                            </table>
+                            <input class="btn btn-block btn-primary my-2 text-center"  type="submit" value="Agendar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="{% static 'customers/detail.js' %}" type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 </body>
 </html>

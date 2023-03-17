@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Customer
 from django.views import generic
+from django.utils import timezone
 
 # Create your views here.
 
@@ -48,10 +49,23 @@ def schedule(request, barber_id):
 def get_costumer(request):
     if request.method =='POST':
         search =request.POST.get('search')
-        cliente=list(Customer.objects.values().filter(c_name__contains=search))
+        cliente=list(Customer.objects.values().filter(c_name__startswith=search))
         if(len(cliente)>0):
             data={'cliente':cliente}
         else:
             data={'message':'Not Found'}
         
         return JsonResponse(data)
+
+
+def register_costumer(request):
+    if request.method =='POST':
+        c_name=request.POST.get('c_name')
+        c_lastname=request.POST.get('c_lastname')
+        c_phone=request.POST.get('c_phone')
+        c_nickname= c_name+c_lastname[:2]
+        c_password= c_nickname+'123'
+        reg_date=timezone.now()
+        cliente=Customer.objects.create(c_name=c_name, cl_lastname=c_lastname,c_phone=c_phone,c_nickname=c_nickname, c_password=c_password, reg_date=reg_date,)
+        if(cliente):
+            return HttpResponse(f'Cliente Registrado Satisfactoriamente')
